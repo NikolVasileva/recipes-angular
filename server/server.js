@@ -1378,7 +1378,92 @@
         },
         comments: {
         
-        }
+        },
+        recipes: {
+            "abc123": {
+              "_id": "abc123",
+              "_createdOn": 1718200000000,
+              "title": "Chicken Soup",
+              "description": "A traditional homemade chicken soup prepared with fresh vegetables and perfectly cooked chicken. The soup is light, aromatic, and ideal for everyday lunches or recovery from a cold. The combination of carrots, onions, and noodles creates a rich flavor, while the tender pieces of meat make the dish irresistible. Best served warm, topped with a pinch of fresh parsley.",
+              "category": "Soups",
+              "imageUrl": "/img/chicken-soup.jpg",
+              "ingredients": "1 chicken, 2 carrots, 1 onion, 100 g noodles, salt and black pepper",
+              "cookTime": 45,
+              "servings": 4,
+              "difficulty": "easy",
+              "_ownerId": "user567"
+            },
+          
+            "ghi789": {
+              "_id": "ghi789",
+              "_createdOn": 1718206000000,
+              "title": "Pasta Carbonara",
+              "description": "A classic Italian Carbonara prepared using the authentic recipe without cream. The combination of fresh eggs, aromatic parmesan, and fried pancetta creates a silky smooth sauce that coats every strand of spaghetti. The balance between salty meat, black pepper, and creamy sauce gives the dish an unmistakable Italian character.",
+              "category": "Main Dishes",
+              "imageUrl": "/img/pasta-carbonara.jpg",
+              "ingredients": "250 g spaghetti, 150 g pancetta, 2 eggs, 50 g parmesan, salt and pepper",
+              "cookTime": 20,
+              "servings": 2,
+              "difficulty": "medium",
+              "_ownerId": "user982"
+            },
+          
+            "jkl012": {
+              "_id": "jkl012",
+              "_createdOn": 1718208000000,
+              "title": "Chocolate Muffins",
+              "description": "Fluffy, aromatic, and incredibly chocolatey muffins that melt in your mouth. The recipe is simple and suitable for beginners. The rich cocoa flavor and soft texture make them perfect for dessert, breakfast, or a festive treat.",
+              "category": "Desserts",
+              "imageUrl": "/img/chocolate-muffins.jpg",
+              "ingredients": "200 g flour, 2 eggs, 100 g sugar, 50 g cocoa, 100 ml milk, 1 tsp baking powder",
+              "cookTime": 20,
+              "servings": 6,
+              "difficulty": "easy",
+              "_ownerId": "user245"
+            },
+          
+            "mno345": {
+              "_id": "mno345",
+              "_createdOn": 1718210000000,
+              "title": "Greek Salad",
+              "description": "A refreshing and light Greek salad combining tomatoes, cucumbers, olives, onions, and high-quality feta cheese. Olive oil and oregano enhance the freshness and give the dish its characteristic Mediterranean flavor.",
+              "category": "Salads",
+              "imageUrl": "/img/greek-salad.jpg",
+              "ingredients": "2 tomatoes, 1 cucumber, 1 red onion, 50 g feta cheese, olives, salt, oregano",
+              "cookTime": 0,
+              "servings": 2,
+              "difficulty": "easy",
+              "_ownerId": "user567"
+            },
+          
+            "pqr678": {
+              "_id": "pqr678",
+              "_createdOn": 1718212000000,
+              "title": "Beef with Potatoes",
+              "description": "Aromatic and tender beef slowly cooked with potatoes, carrots, and selected spices. This dish is nourishing and perfect for a family dinner. Slow cooking allows the meat to soften completely and absorb the flavors of the vegetables.",
+              "category": "Main Dishes",
+              "imageUrl": "/img/beef-with-potatoes.jpg",
+              "ingredients": "600 g beef, 4 potatoes, 2 carrots, 1 onion, black pepper, salt, bay leaf",
+              "cookTime": 90,
+              "servings": 4,
+              "difficulty": "medium",
+              "_ownerId": "user999"
+            },
+          
+            "stu901": {
+              "_id": "stu901",
+              "_createdOn": 1718214000000,
+              "title": "Omelette with Mushrooms and Cheese",
+              "description": "A light and quick omelette made with fresh mushrooms, eggs, and cheese. Perfect for breakfast, a quick lunch, or a light dinner. The mushrooms give a deep, earthy aroma, while the melted cheese makes the omelette fluffy and delicious.",
+              "category": "Breakfast",
+              "imageUrl": "/img/omelette-mushrooms-cheese.jpg",
+              "ingredients": "3 eggs, 100 g mushrooms, 50 g cheese, salt, black pepper, butter",
+              "cookTime": 10,
+              "servings": 1,
+              "difficulty": "easy",
+              "_ownerId": "user321"
+            }
+          },         
     };
     var rules$1 = {
         users: {
