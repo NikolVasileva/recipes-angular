@@ -1,0 +1,13 @@
+<div class="container-fluid service py-6">
+    <div class="container">
+        <div class="text-center" >
+            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">MUST TRY</small>
+            <h1 class="display-5 mb-5">Explore the newest ones</h1>
+        </div>
+        <div class="row g-4">
+            @for (recipe of recipes; track recipe._id) {
+                <app-recipes-item [recipe]="recipe" />
+            }
+        </div>
+    </div>
+</div>

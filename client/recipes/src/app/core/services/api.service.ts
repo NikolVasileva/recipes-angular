@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Recipe } from "../../shared/interfaces/recipes/recipes";
+import { Recipe } from "../../shared/interfaces/recipes";
 
 @Injectable({
     providedIn: "root"
@@ -17,6 +17,6 @@ export class ApiService {
     }
 
     getLatestRecipes(): Observable<Recipe[]> {
-        return this.http.get<Recipe[]>(`${this.apiUrl}/recipes?limit=4`)
+        return this.http.get<Recipe[]>(`${this.apiUrl}/recipes?sortBy=_createdOn%20desc&pageSize=4`)
     }
 }
