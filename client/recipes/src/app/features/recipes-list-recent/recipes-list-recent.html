@@ -4,10 +4,8 @@
             <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">MUST TRY</small>
             <h1 class="display-5 mb-5">Explore the newest ones</h1>
         </div>
-        <div class="row g-4">
-            @for (recipe of recipes; track recipe._id) {
-                <app-recipes-item [recipe]="recipe" />
-            }
+        <div class="row g-4" *ngFor="let recipe of recipes">
+            <app-recipes-item [recipe]="recipe"></app-recipes-item>
         </div>
     </div>
 </div>
