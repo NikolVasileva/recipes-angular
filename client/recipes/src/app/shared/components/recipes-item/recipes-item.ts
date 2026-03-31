@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Recipe } from '../../interfaces/recipes';
 import { CommonModule } from '@angular/common';
+import { Recipe } from '../../interfaces/recipes';
 
 @Component({
   selector: 'app-recipes-item',
@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './recipes-item.css',
 })
 export class RecipesItem {
-  @Input({ required: true }) recipe!: Recipe;
+  @Input() recipe!: Recipe;
 }

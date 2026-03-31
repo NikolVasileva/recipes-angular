@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+
 import { Recipe } from '../../shared/interfaces/recipes';
 import { ApiService } from '../../core/services/api.service';
 import { RecipesItem } from '../../shared/components/recipes-item/recipes-item';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipes-list-recent',
@@ -11,21 +13,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './recipes-list-recent.html',
   styleUrl: './recipes-list-recent.css',
 })
-export class RecipesListRecent implements OnInit{
-  recipes: Recipe[] = [];
+export class RecipesListRecent {
+  recipes$!: Observable<Recipe[]>;
 
-  constructor(private apiService: ApiService){}
-
-
-  ngOnInit(): void {
-    this.apiService.getLatestRecipes().subscribe((recipes) => {
-      this.recipes = recipes;
-
-      console.log(this.recipes);
-    });
+  constructor(private apiService: ApiService) {
+    this.recipes$ = this.apiService.getLatestRecipes();
   }
-  // trackById(recipe: Recipe) {
-  //   return recipe;
-  // }
 }
-
