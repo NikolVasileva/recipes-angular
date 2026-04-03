@@ -1425,7 +1425,7 @@
             "mno345": {
               "_id": "mno345",
               "_createdOn": 1718210000000,
-              "title": "Greek Salad",
+              "title": "Traditional Greek Salad",
               "description": "A refreshing and light Greek salad combining tomatoes, cucumbers, olives, onions, and high-quality feta cheese. Olive oil and oregano enhance the freshness and give the dish its characteristic Mediterranean flavor.",
               "category": "Salads",
               "imageUrl": "/img/greek-salad.jpg",
@@ -1453,7 +1453,7 @@
             "stu901": {
               "_id": "stu901",
               "_createdOn": 1718214000000,
-              "title": "Omelette with Mushrooms and Cheese",
+              "title": "Omelette with Mushrooms",
               "description": "A light and quick omelette made with fresh mushrooms, eggs, and cheese. Perfect for breakfast, a quick lunch, or a light dinner. The mushrooms give a deep, earthy aroma, while the melted cheese makes the omelette fluffy and delicious.",
               "category": "Breakfast",
               "imageUrl": "/img/omelette-mushrooms-cheese.jpg",
