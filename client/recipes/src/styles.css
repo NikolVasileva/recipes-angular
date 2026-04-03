@@ -124,6 +124,15 @@ h4, h5, h6, .h4, .h5, .h6 {
     margin-left: 8px;
 }
 
+.fixed-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
 @media (min-width: 1200px) {
     .navbar .nav-item .dropdown-menu {
         display: block;
@@ -468,6 +477,8 @@ h4, h5, h6, .h4, .h5, .h6 {
     color: var(--bs-primary) !important;
 }
 /*** Footer End ***/
+
+
 
 
 
