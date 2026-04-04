@@ -19,4 +19,8 @@ export class ApiService {
     getLatestRecipes(): Observable<Recipe[]> {
         return this.http.get<Recipe[]>(`${this.apiUrl}/recipes?sortBy=_createdOn%20desc&pageSize=4`)
     }
+
+    getRecipeById(id: string): Observable<Recipe> {
+        return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`);
+    }
 }
