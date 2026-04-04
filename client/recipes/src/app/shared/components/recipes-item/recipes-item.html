@@ -20,7 +20,7 @@
                 {{ recipe.difficulty }}</p>
         </div>
   
-        <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">
+        <a [routerLink]="['/recipes', recipe._id]" class="btn btn-primary px-4 py-2 rounded-pill">
           Read More
         </a>
       </div>
