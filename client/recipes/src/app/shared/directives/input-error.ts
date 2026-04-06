@@ -1,9 +1,19 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, HostBinding, inject, OnInit } from '@angular/core';
+import { NgControl } from '@angular/forms';
 
 @Directive({
   selector: '[appInputError]',
-
 })
-export class InputError {
-  constructor() {}
+export class InputError implements OnInit {
+  private element = inject(ElementRef);
+  private control = inject(NgControl, { optional: true });
+
+  @HostBinding("class.input-error") get hasError(): boolean {
+    return (this.control?.invalid && this.control?.touched) || false;
+  }
+
+  ngOnInit(): void {
+    this.element.nativeElement.classList.remove("input-error")
+  }
+  
 }
