@@ -6,12 +6,12 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
   providers: [
     {
       provide: NG_VALIDATORS,
-      useExisting: EmailValidator,
+      useExisting: EmailValidatorDirective,
       multi: true,
     }
   ]
 })
-export class EmailValidator implements Validator {
+export class EmailValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
 

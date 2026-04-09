@@ -4,7 +4,7 @@ import { NgControl } from '@angular/forms';
 @Directive({
   selector: '[appInputError]',
 })
-export class InputError implements OnInit {
+export class InputErrorDirective implements OnInit {
   private element = inject(ElementRef);
   private control = inject(NgControl, { optional: true });
 
