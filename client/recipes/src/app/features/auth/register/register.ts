@@ -18,6 +18,7 @@ export class Register {
   private fb = inject(FormBuilder);
 
   errorMessage = '';
+  submitted = false;
 
   registerForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, emailValidator()]],
@@ -35,6 +36,8 @@ export class Register {
   }
 
   onRegister(): void {
+    this.submitted = true;
+    
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;

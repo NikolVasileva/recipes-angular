@@ -1,67 +1,75 @@
-<div class="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
+<div class="container-fluid contact py-6">
     <div class="container">
-        <div class="p-5 bg-light rounded contact-form">
-            <div class="row g-4 justify-content-center text-center">
-                <div class="col-12"><small
-                        class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Login</small>
-                    <h1 class="display-5 mb-0">Log In to Your Account</h1>
-                </div>
-                <div class="col-md-6 col-lg-7 mx-auto">
-                    <p class="mb-4">If you don’t have an account yet, feel free to create one and get access to more
-                        features.<a routerLink="/register" class="ms-1">Create an account</a>.</p>
-                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                        <input 
-                           appInputError
-                           id="email" 
-                           class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                           placeholder="Email" 
-                           type="email" 
-                           value="" 
-                           name="email"
-                           formControlName="email"
-                        />
-
-                        @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
-                            <p class="error">The field is empty or email is not valid!</p>
-                        }
-
-                        <input 
-                           appInputError
-                           id="password" 
-                           class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                           placeholder="Password" 
-                           type="password"
-                           value="" 
-                           name="password"
-                           formControlName="password"
-                        />
-
-                        @if ((loginForm.get('password')?.dirty || loginForm.get('password')?.touched)
-                        && loginForm.get('password')?.invalid) {
-                          <p class="error">Password must be at least 4 characters!</p>
-                        }
-                    
-                        <!-- @if (loginForm.invalid && loginForm.touched) {
-                            <p class="error">Please provide valid data to continue!</p>
-                        } -->
-
-                        @if (submitted && loginForm.invalid) {
-                            <p class="error">Please provide valid data to continue!</p>
-                        }
-
-                        @if (errorMessage) {
-                            <p class="error">{{ errorMessage }}</p>
-                        }
-            
-                        <input 
-                           [disabled]="loginForm.invalid"
-                           class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
-                           type="submit" 
-                           value="Login Now"
-                        />
-                    </form>
-                </div>
-            </div>
+      <div class="p-5 bg-light rounded contact-form">
+        <div class="row g-4 justify-content-center text-center">
+  
+          <div class="col-12">
+            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+              Login
+            </small>
+            <h1 class="display-5 mb-0">Log In to Your Account</h1>
+          </div>
+  
+          <div class="col-md-6 col-lg-7 mx-auto">
+  
+            <p class="mb-4">
+              Don’t have an account?
+              <a routerLink="/register" class="ms-1">Create one</a>.
+            </p>
+  
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  
+              <!-- EMAIL -->
+              <input
+                appInputError
+                class="w-100 form-control p-3 mb-2 border-primary bg-light"
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                autocomplete="email"
+              />
+  
+              @if ((loginForm.get('email')?.touched || submitted) &&
+              loginForm.get('email')?.invalid) {
+                <p class="error">Invalid email!</p>
+              }
+  
+              <!-- PASSWORD -->
+              <input
+                appInputError
+                class="w-100 form-control p-3 mb-2 border-primary bg-light"
+                placeholder="Password"
+                type="password"
+                formControlName="password"
+                autocomplete="current-password"
+              />
+  
+              @if ((loginForm.get('password')?.touched || submitted) &&
+              loginForm.get('password')?.invalid) {
+                <p class="error">Password must be at least 4 characters!</p>
+              }
+  
+              <!-- GLOBAL ERROR -->
+              @if (submitted && loginForm.invalid) {
+                <p class="error">Please provide valid data to continue!</p>
+              }
+  
+              <!-- BACKEND ERROR -->
+              @if (errorMessage) {
+                <p class="error">{{ errorMessage }}</p>
+              }
+  
+              <input
+                class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
+                type="submit"
+                value="Login"
+                [disabled]="loginForm.invalid"
+              />
+  
+            </form>
+  
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
