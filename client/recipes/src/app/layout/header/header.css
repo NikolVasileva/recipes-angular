@@ -1,0 +1,23 @@
+.custom-logout-btn {
+    background-color: #d4a762;
+    color: #000;
+    border: 2px solid #d4a762;
+    font-weight: 600;
+    transition: all 0.25s ease-in-out;
+  }
+  
+  .custom-logout-btn i {
+    color: #000;
+  }
+  
+  .custom-logout-btn:hover {
+    background-color: #000;
+    color: #d4a762;
+    border-color: #d4a762;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-logout-btn:hover i {
+    color: #d4a762;
+  }
