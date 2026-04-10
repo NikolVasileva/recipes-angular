@@ -8,14 +8,52 @@
                 </div>
                 <div class="col-md-6 col-lg-7 mx-auto">
                     <p class="mb-4">If you don’t have an account yet, feel free to create one and get access to more
-                        features.<a href="/register" class="ms-1">Create an account</a>.</p>
-                    <form>
-                        <input id="email" class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                            placeholder="Email" type="email" value="" name="email">
-                        <input id="login-password" class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                            placeholder="Password" type="password" value="" name="password">
-                        <input class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
-                            type="submit" value="Login Now">
+                        features.<a routerLink="/register" class="ms-1">Create an account</a>.</p>
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                        <input 
+                           appInputError
+                           id="email" 
+                           class="w-100 form-control p-3 mb-4 border-primary bg-light"
+                           placeholder="Email" 
+                           type="email" 
+                           value="" 
+                           name="email"
+                           formControlName="email"
+                        />
+
+                        @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+                            <p class="error">Email is not valid!</p>
+                        }
+
+                        <input 
+                           appInputError
+                           id="password" 
+                           class="w-100 form-control p-3 mb-4 border-primary bg-light"
+                           placeholder="Password" 
+                           type="password"
+                           value="" 
+                           name="password"
+                           formControlName="password"
+                        />
+
+                        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+                            <p class="error">Password must be at least 4 characters!</p>
+                        }
+                    
+                          @if (loginForm.invalid && loginForm.touched) {
+                            <p class="error">Please provide valid data to continue!</p>
+                        }
+
+                        @if (errorMessage) {
+                            <p class="error">{{ errorMessage }}</p>
+                        }
+            
+                        <input 
+                           [disabled]="loginForm.invalid"
+                           class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
+                           type="submit" 
+                           value="Login Now"
+                        />
                     </form>
                 </div>
             </div>

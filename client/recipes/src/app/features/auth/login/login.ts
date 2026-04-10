@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { InputErrorDirective } from '../../../shared/directives/input-error.directive';
 import { AuthService } from '../../../core/services/auth.service';
@@ -7,7 +7,7 @@ import { emailValidator } from '../../../shared/validators/email.validator';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink, InputErrorDirective],
+  imports: [ReactiveFormsModule, RouterLink, InputErrorDirective],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -36,6 +36,7 @@ export class Login {
     this.authService.login({ email, password }).subscribe({
       next: (user) => {
         if (user) {
+          this.authService.setSession(user);
           this.router.navigate(["/recipes"])
         } else {
           this.errorMessage = "Invalid email or password"
