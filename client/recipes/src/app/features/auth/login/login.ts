@@ -17,13 +17,17 @@ export class Login {
   private fb = inject(FormBuilder);
 
   loginForm: FormGroup = this.fb.group({
-    email: ["", [Validators.required, emailValidator]],
+    email: ["", [Validators.required, emailValidator()]],
     password: ["", [Validators.required, Validators.minLength(4)]]
   });
 
   errorMessage = "";
+  submitted = false;
+
 
   onLogin(): void {
+    this.submitted = true;
+    
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;

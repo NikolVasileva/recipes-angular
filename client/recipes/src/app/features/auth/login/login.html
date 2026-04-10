@@ -22,7 +22,7 @@
                         />
 
                         @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
-                            <p class="error">Email is not valid!</p>
+                            <p class="error">The field is empty or email is not valid!</p>
                         }
 
                         <input 
@@ -36,11 +36,16 @@
                            formControlName="password"
                         />
 
-                        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
-                            <p class="error">Password must be at least 4 characters!</p>
+                        @if ((loginForm.get('password')?.dirty || loginForm.get('password')?.touched)
+                        && loginForm.get('password')?.invalid) {
+                          <p class="error">Password must be at least 4 characters!</p>
                         }
                     
-                          @if (loginForm.invalid && loginForm.touched) {
+                        <!-- @if (loginForm.invalid && loginForm.touched) {
+                            <p class="error">Please provide valid data to continue!</p>
+                        } -->
+
+                        @if (submitted && loginForm.invalid) {
                             <p class="error">Please provide valid data to continue!</p>
                         }
 

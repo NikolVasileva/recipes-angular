@@ -5,7 +5,7 @@ export function emailValidator(): ValidatorFn {
     const value = control.value;
     
     if (!value) {
-      return { required: true };
+      return null;
     }
 
     const emailRegex = /^[A-Za-z0-9._%+-]{4,}@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
