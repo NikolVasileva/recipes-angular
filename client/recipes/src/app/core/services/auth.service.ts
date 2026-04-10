@@ -17,15 +17,15 @@ export class AuthService {
     currentUser = computed(() => this.user());
 
     login(credentials: LoginData): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/login`, credentials, { withCredentials: true });
+        return this.http.post<User>(`${this.apiUrl}/login`, credentials, { withCredentials: false });
     };
 
     register(userData: UserAuth): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/register`, userData, { withCredentials: true });
+        return this.http.post<User>(`${this.apiUrl}/register`, userData, { withCredentials: false });
     };
 
     logout(): Observable<void> {
-        return this.http.post<void>(`${this.apiUrl}/logout`, {}, { withCredentials: true });
+        return this.http.post<void>(`${this.apiUrl}/logout`, {}, { withCredentials: false });
     };
 
     setSession(user: User): void {

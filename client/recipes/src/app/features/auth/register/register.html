@@ -1,26 +1,94 @@
 <div class="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
     <div class="container">
-        <div class="p-5 bg-light rounded contact-form">
-            <div class="row g-4 justify-content-center text-center">
-                <div class="col-12"><small
-                        class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Register</small>
-                    <h1 class="display-5 mb-0">Create Your Account</h1>
-                </div>
-                <div class="col-md-6 col-lg-7 mx-auto">
-                    <p class="mb-4">If you already have an account, please log in to continue.<a href="/login"
-                            class="ms-1">Log in</a>.</p>
-                    <form>
-                        <input id="email" class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                            placeholder="Email" type="email" value="" name="email">
-                        <input id="password" class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                            placeholder="Password" type="password" value="" name="password">
-                        <input id="confirmPassword" class="w-100 form-control p-3 mb-4 border-primary bg-light"
-                            placeholder="Confirm Password" type="password" value="" name="confirmPassword">
-                        <input class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
-                            type="submit" value="Register Now">
-                    </form>
-                </div>
-            </div>
+      <div class="p-5 bg-light rounded contact-form">
+        <div class="row g-4 justify-content-center text-center">
+  
+          <div class="col-12">
+            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+              Register
+            </small>
+            <h1 class="display-5 mb-0">Create Your Account</h1>
+          </div>
+  
+          <div class="col-md-6 col-lg-7 mx-auto">
+  
+            <p class="mb-4">
+              If you already have an account, please log in to continue.
+              <a routerLink="/login" class="ms-1">Log in</a>.
+            </p>
+  
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+  
+              <!-- EMAIL -->
+              <input
+                appInputError
+                id="email"
+                class="w-100 form-control p-3 mb-2 border-primary bg-light"
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+              />
+  
+              @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+                <p class="error">Email is not valid!</p>
+              }
+  
+              <!-- PASSWORD GROUP -->
+              <ng-container formGroupName="passwords">
+  
+                <!-- PASSWORD -->
+                <input
+                  appInputError
+                  id="password"
+                  class="w-100 form-control p-3 mb-2 border-primary bg-light"
+                  placeholder="Password"
+                  type="password"
+                  formControlName="password"
+                  [class.input-error]="passwordsGroup.get('password')?.touched && passwordsGroup.get('password')?.invalid"
+                />
+  
+                @if (passwordsGroup.get('password')?.touched && passwordsGroup.get('password')?.invalid) {
+                  <p class="error">Password must be at least 4 characters!</p>
+                }
+  
+                <!-- CONFIRM PASSWORD -->
+                <input
+                  appInputError
+                  id="confirmPassword"
+                  class="w-100 form-control p-3 mb-2 border-primary bg-light"
+                  placeholder="Confirm Password"
+                  type="password"
+                  formControlName="confirmPassword"
+                  [class.input-error]="passwordsGroup.get('confirmPassword')?.touched && passwordsGroup.get('confirmPassword')?.invalid"
+                />
+  
+                @if (passwordsGroup.touched && passwordsGroup.errors?.['passwordsMismatch']) {
+                  <p class="error">Passwords do not match!</p>
+                }
+  
+              </ng-container>
+  
+              <!-- GLOBAL ERROR -->
+              @if (registerForm.touched && registerForm.invalid) {
+                <p class="error">Please provide valid data to continue!</p>
+              }
+  
+              @if (errorMessage) {
+                <p class="error">{{ errorMessage }}</p>
+              }
+  
+              <!-- SUBMIT -->
+              <input
+                class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
+                type="submit"
+                value="Register Now"
+                [disabled]="registerForm.invalid"
+              />
+  
+            </form>
+  
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
