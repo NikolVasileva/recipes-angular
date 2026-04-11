@@ -3,6 +3,7 @@ export interface User {
     email: string,
     recipes?: string[],
     created_at?: string;
+    accessToken: string;
 }
 
 export interface UserAuth {

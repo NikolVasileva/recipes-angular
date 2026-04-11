@@ -17,23 +17,35 @@ export class AuthService {
     currentUser = computed(() => this.user());
 
     login(credentials: LoginData): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/login`, credentials, { withCredentials: false });
-    };
+        return this.http.post<User>(`${this.apiUrl}/login`, credentials);
+    }
 
     register(userData: UserAuth): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/register`, userData, { withCredentials: false });
-    };
+        return this.http.post<User>(`${this.apiUrl}/register`, userData);
+    }
 
     logout(): Observable<void> {
-        return this.http.post<void>(`${this.apiUrl}/logout`, {}, { withCredentials: false });
-    };
+        const token = localStorage.getItem('accessToken');
+
+        return this.http.post<void>(
+            `${this.apiUrl}/logout`,
+            {},
+            {
+                headers: {
+                    'X-Authorization': token || ''
+                }
+            }
+        );
+    }
 
     setSession(user: User): void {
         this.user.set(user);
+
+        localStorage.setItem('accessToken', user.accessToken);
     }
-    
+
     clearSession(): void {
         this.user.set(null);
+        localStorage.removeItem('accessToken');
     }
-    
 }

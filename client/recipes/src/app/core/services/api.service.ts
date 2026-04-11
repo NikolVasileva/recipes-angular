@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Recipe } from "../../shared/interfaces/recipes";
+import { CreateRecipe } from "../../shared/interfaces/create-recipe";
 
 @Injectable({
     providedIn: "root"
@@ -22,5 +23,19 @@ export class ApiService {
 
     getRecipeById(id: string): Observable<Recipe> {
         return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`);
+    }
+
+    createRecipe(data: CreateRecipe): Observable<Recipe> {
+        const token = localStorage.getItem('accessToken');
+      
+        return this.http.post<Recipe>(
+          `${this.apiUrl}/recipes`,
+          data,
+          {
+            headers: {
+              'X-Authorization': token || ''
+            }
+          }
+        );
     }
 }
