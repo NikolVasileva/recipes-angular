@@ -19,7 +19,6 @@
   
             <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
   
-              <!-- EMAIL -->
               <input
                 appInputError
                 class="w-100 form-control p-3 mb-2 border-primary bg-light"
@@ -33,11 +32,9 @@
               registerForm.get('email')?.invalid) {
                 <p class="error">Invalid email!</p>
               }
-  
-              <!-- PASSWORD GROUP -->
+
               <ng-container formGroupName="passwords">
   
-                <!-- PASSWORD -->
                 <input
                   appInputError
                   class="w-100 form-control p-3 mb-2 border-primary bg-light"
@@ -52,7 +49,6 @@
                   <p class="error">Password must be at least 4 characters!</p>
                 }
   
-                <!-- CONFIRM PASSWORD -->
                 <input
                   appInputError
                   class="w-100 form-control p-3 mb-2 border-primary bg-light"
@@ -67,7 +63,6 @@
                   <p class="error">Confirm password is required!</p>
                 }
   
-                <!-- ✅ FIXED MISMATCH -->
                 @if (
                   (passwordsGroup.get('confirmPassword')?.touched || submitted) &&
                   passwordsGroup.get('confirmPassword')?.value &&
@@ -78,14 +73,14 @@
   
               </ng-container>
   
-              <!-- GLOBAL ERROR -->
               @if (submitted && registerForm.invalid) {
                 <p class="error">Please provide valid data to continue!</p>
               }
-  
-              <!-- BACKEND ERROR -->
+
               @if (errorMessage) {
-                <p class="error">{{ errorMessage }}</p>
+                <div class="system-error">
+                  {{ errorMessage }}
+                </div>
               }
   
               <input

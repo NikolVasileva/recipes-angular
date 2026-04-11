@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { InputErrorDirective } from '../../../shared/directives/input-error.directive';
 import { AuthService } from '../../../core/services/auth.service';
 import { emailValidator } from '../../../shared/validators/email.validator';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private notifService = inject(NotificationService);
 
   loginForm: FormGroup = this.fb.group({
     email: ["", [Validators.required, emailValidator()]],
@@ -27,7 +29,7 @@ export class Login {
 
   onLogin(): void {
     this.submitted = true;
-    
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -39,15 +41,12 @@ export class Login {
 
     this.authService.login({ email, password }).subscribe({
       next: (user) => {
-        if (user) {
           this.authService.setSession(user);
+          this.notifService.showSuccess('Login successful');
           this.router.navigate(["/recipes"])
-        } else {
-          this.errorMessage = "Invalid email or password"
-        }
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || "Please, try again! Login failed."
+        this.notifService.showError('Login unsuccessful');
       }
     })
   }
