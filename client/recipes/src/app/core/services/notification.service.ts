@@ -9,7 +9,6 @@ export class NotificationService {
   private notificationSignal = signal<Notification | null>(null);
   private timeOutId: ReturnType<typeof setTimeout> | null = null;
 
-  // публичен readonly достъп
   notification = computed(() => this.notificationSignal());
 
   private show(notification: Notification): void {
