@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 
 import { ApiService } from '../../core/services/api.service';
 import { Recipe } from '../../shared/interfaces/recipes';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -17,9 +18,26 @@ export class RecipeDetails {
 
   private route = inject(ActivatedRoute);
   private apiService = inject(ApiService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
   // recipes$!: Observable<Recipe[]>;
 
   recipe$ = this.route.params.pipe(
     switchMap(params => this.apiService.getRecipeById(params['recipeId']))
   );
+
+  // recipe$: Observable<Recipe> = this.route.params.pipe(
+  //   switchMap(params => this.apiService.getRecipeById(params['id']))
+  // );
+
+  currentUser = this.authService.currentUser;
+
+  isOwner(recipe: Recipe): boolean {
+    const user = this.authService.currentUser();
+    return !!user && user._id === (recipe as any)._ownerId;
+  }
+
+  deleteRecipe(id: string): void {
+    console.log('delete', id);
+  }
 }
