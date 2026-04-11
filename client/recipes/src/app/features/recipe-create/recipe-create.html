@@ -1,109 +1,125 @@
 <div class="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
     <div class="container">
-        <div class="p-5 bg-light rounded contact-form mx-auto">
-            <div class="text-center mb-4">
-                <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-                    Add New Recipe
-                </small>
-                <h1 class="display-5 mb-0">Create a Recipe</h1>
-            </div>
-
-            <form>
-                <div class="mb-3">
-                    <label for="title" class="form-label text-dark">Recipe Title</label>
-                    <input
-                        id="title"
-                        name="title"
-                        type="text"
-                        class="w-100 form-control p-3 border-primary bg-light"
-                        placeholder="Recipe Title"
-                    >
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label text-dark">Recipe Description</label>
-                    <textarea 
-                        id="description"
-                        name="description"
-                        class="w-100 form-control p-3 border-primary bg-light"
-                        rows="4"
-                        placeholder="Recipe Description"
-                    ></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="imageUrl" class="form-label text-dark">Image URL</label>
-                    <input
-                        id="imageUrl"
-                        name="imageUrl"
-                        type="text"
-                        class="w-100 form-control p-3 border-primary bg-light"
-                        placeholder="Image URL"
-                    >
-                </div>
-
-                <div class="mb-3">
-                    <label for="ingredients" class="form-label text-dark">Ingredients</label>
-                    <input
-                        id="ingredients"
-                        name="ingredients"
-                        type="text"
-                        class="w-100 form-control p-3 border-primary bg-light"
-                        placeholder="Ingredients (comma separated)"
-                    >
-                </div>
-
-                <div class="row g-3 mb-4">
-                    <div class="col-md-4">
-                        <label for="category" class="form-label text-dark">Category</label>
-                        <input
-                            id="category"
-                            name="category"
-                            type="text"
-                            class="w-100 form-control p-3 border-primary bg-light"
-                            placeholder="Category"
-                        >
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="cookTime" class="form-label text-dark">Cook Time (min)</label>
-                        <input
-                            id="cookTime"
-                            name="cookTime"
-                            type="number"
-                            class="w-100 form-control p-3 border-primary bg-light"
-                            placeholder="Cook Time"
-                        >
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="servings" class="form-label text-dark">Servings</label>
-                        <input
-                            id="servings"
-                            name="servings"
-                            type="number"
-                            class="w-100 form-control p-3 border-primary bg-light"
-                            placeholder="Servings"
-                        >
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="difficulty" class="form-label text-dark">Difficulty</label>
-                    <input
-                        id="difficulty"
-                        name="difficulty"
-                        type="text"
-                        class="w-100 form-control p-3 border-primary bg-light"
-                        placeholder="Difficulty (easy, medium, hard)"
-                    >
-                </div>
-
-                <input
-                    type="submit"
-                    class="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
-                    value="Add Recipe">
-            </form>
+      <div class="p-5 bg-light rounded contact-form mx-auto">
+        <div class="text-center mb-4">
+          <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+            Add New Recipe
+          </small>
+          <h1 class="display-5 mb-0">Create a Recipe</h1>
         </div>
+  
+        <form #recipeForm="ngForm" (ngSubmit)="onSubmit()">
+  
+          <div class="mb-3">
+            <label for="title" class="form-label text-dark">Recipe Title</label>
+            <input
+              appInputError
+              [(ngModel)]="title"
+              name="title"
+              id="title"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="Recipe Title"
+              required
+            >
+          </div>
+  
+          <div class="mb-3">
+            <label for="description" class="form-label text-dark">Recipe Description</label>
+            <textarea
+              appInputError
+              [(ngModel)]="description"
+              name="description"
+              id="description"
+              class="w-100 form-control p-3 border-primary bg-light"
+              rows="4"
+              placeholder="Recipe Description"
+              required
+            ></textarea>
+          </div>
+  
+          <div class="mb-3">
+            <label for="imageUrl" class="form-label text-dark">Image URL</label>
+            <input
+              appInputError
+              [(ngModel)]="imageUrl"
+              name="imageUrl"
+              id="imageUrl"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="Image URL"
+            >
+          </div>
+  
+          <div class="mb-3">
+            <label for="ingredients" class="form-label text-dark">Ingredients</label>
+            <input
+              appInputError
+              [(ngModel)]="ingredients"
+              name="ingredients"
+              id="ingredients"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="Ingredients (comma separated)"
+            >
+          </div>
+  
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label class="form-label text-dark">Category</label>
+              <input
+                appInputError
+                [(ngModel)]="category"
+                name="category"
+                type="text"
+                class="w-100 form-control p-3 border-primary bg-light"
+                placeholder="Category"
+              >
+            </div>
+  
+            <div class="col-md-4">
+              <label class="form-label text-dark">Cook Time (min)</label>
+              <input
+                appInputError
+                [(ngModel)]="cookTime"
+                name="cookTime"
+                type="number"
+                class="w-100 form-control p-3 border-primary bg-light"
+              >
+            </div>
+  
+            <div class="col-md-4">
+              <label class="form-label text-dark">Servings</label>
+              <input
+                appInputError
+                [(ngModel)]="servings"
+                name="servings"
+                type="number"
+                class="w-100 form-control p-3 border-primary bg-light"
+              >
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label text-dark">Difficulty</label>
+            <input
+              appInputError
+              [(ngModel)]="difficulty"
+              name="difficulty"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="easy, medium, hard"
+            >
+          </div>
+  
+          <button
+            type="submit"
+            class="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
+          >
+            Add Recipe
+          </button>
+  
+        </form>
+      </div>
     </div>
-</div>
+  </div>
