@@ -1,1 +1,43 @@
-<p>favorites works!</p>
+<div class="container py-5">
+
+    <div class="text-center mb-4">
+        <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+          Favorites
+        </small>
+        <h1 class="display-5 mb-0">My Favorite Recipes</h1>
+    </div>
+  
+    <div *ngIf="favorites$ | async as favorites">
+  
+      <div *ngIf="favorites.length === 0" class="text-center py-5">
+  
+        <h3 class="mb-3">You don't have any favorite recipes yet!</h3>
+  
+        <p class="mb-4 text-muted">
+          Start adding recipes to your favorites to see them here.
+        </p>
+  
+        <a routerLink="/recipes" class="btn btn-primary px-4 py-2 rounded-pill">
+          Recipes
+        </a>
+  
+      </div>
+  
+      <div *ngIf="favorites.length > 0">
+  
+        <div *ngFor="let recipe of favorites" class="card mb-3 p-3">
+  
+          <h4>{{ recipe.title }}</h4>
+          <p>{{ recipe.description }}</p>
+  
+          <a [routerLink]="['/recipes', recipe._id]" class="btn btn-outline-primary">
+            Read More
+          </a>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>

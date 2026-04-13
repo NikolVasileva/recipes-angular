@@ -1,9 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ApiService } from '../../core/services/api.service';
+import { AuthService } from '../../core/services/auth.service';
+import { switchMap } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './favorites.html',
-  styleUrl: './favorites.css',
 })
-export class Favorites {}
+export class Favorites {
+
+  private apiService = inject(ApiService);
+  private authService = inject(AuthService);
+
+  user = this.authService.currentUser;
+
+  favorites$ = this.apiService.getAllRecipes().pipe(
+    switchMap(recipes => {
+      const favIds = this.user()?.favorites || [];
+      return [recipes.filter(r => favIds.includes(r._id))];
+    })
+  );
+}
