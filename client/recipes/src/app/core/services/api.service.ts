@@ -51,7 +51,7 @@ export class ApiService {
           }
         );
     }
-    
+
     deleteRecipe(id: string) {
         const token = localStorage.getItem('accessToken');
       

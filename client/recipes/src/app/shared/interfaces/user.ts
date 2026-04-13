@@ -4,6 +4,7 @@ export interface User {
     recipes?: string[],
     created_at?: string;
     accessToken: string;
+    favorites?: string[];
 }
 
 export interface UserAuth {

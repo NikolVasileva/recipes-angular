@@ -38,6 +38,17 @@
           </div>
         </div>
 
+        <!-- <div *ngIf="authService.isLoggedIn()" class="mb-3">
+
+          <button
+            (click)="toggleFavorite(recipe)"
+            class="btn btn-warning py-3 px-5 rounded-pill"
+          >
+            {{ checkFavorite(recipe) ? 'Remove Favorite' : 'Add Favorite' }}
+          </button>
+        
+        </div> -->
+
         <div *ngIf="isOwner(recipe)">
 
           <a [routerLink]="['/recipes/edit', recipe._id]" class="btn btn-primary py-3 px-5 rounded-pill me-2">

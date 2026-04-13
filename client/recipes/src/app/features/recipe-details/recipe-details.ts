@@ -22,6 +22,7 @@ export class RecipeDetails {
   private authService = inject(AuthService);
   private router = inject(Router);
   private notif = inject(NotificationService);
+
   // recipes$!: Observable<Recipe[]>;
 
   recipe$ = this.route.params.pipe(
@@ -52,4 +53,5 @@ export class RecipeDetails {
       }
     });
   }
+
 }
