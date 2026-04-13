@@ -38,16 +38,17 @@
           </div>
         </div>
 
-        <!-- <div *ngIf="authService.isLoggedIn()" class="mb-3">
+        <div class="mb-3" *ngIf="currentUser()">
 
           <button
             (click)="toggleFavorite(recipe)"
             class="btn btn-warning py-3 px-5 rounded-pill"
           >
+            <i class="fas" [ngClass]="checkFavorite(recipe) ? 'fa-heart' : 'fa-heart-o'"></i>
             {{ checkFavorite(recipe) ? 'Remove Favorite' : 'Add Favorite' }}
           </button>
         
-        </div> -->
+        </div>
 
         <div *ngIf="isOwner(recipe)">
 

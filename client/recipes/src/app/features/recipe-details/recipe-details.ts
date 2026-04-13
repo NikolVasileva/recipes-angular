@@ -54,4 +54,40 @@ export class RecipeDetails {
     });
   }
 
+  toggleFavorite(recipe: any): void {
+    const user = this.authService.currentUser();
+  
+    if (!user) return;
+  
+    const favorites = user.favorites ?? [];
+    const isFav = favorites.includes(recipe._id);
+  
+    const updatedFavorites = isFav
+      ? favorites.filter(id => id !== recipe._id)
+      : [...favorites, recipe._id];
+  
+    this.apiService.updateUserFavorites(user._id, updatedFavorites)
+      .subscribe({
+        next: () => {
+          this.authService.updateUser({
+            ...user,
+            favorites: updatedFavorites
+          });
+  
+          this.notif.showSuccess(
+            isFav ? 'Removed from favorites ❤️' : 'Added to favorites ❤️'
+          );
+        },
+        error: () => {
+          this.notif.showError('Failed to update favorites');
+        }
+      });
+  }
+
+  checkFavorite(recipe: any): boolean {
+    const user = this.authService.currentUser();
+  
+    return user?.favorites?.includes(recipe._id) ?? false;
+  }
+
 }
