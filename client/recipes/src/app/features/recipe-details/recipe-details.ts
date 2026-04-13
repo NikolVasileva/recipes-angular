@@ -38,6 +38,17 @@ export class RecipeDetails {
   }
 
   deleteRecipe(id: string): void {
-    console.log('delete', id);
+    if (!confirm('Are you sure you want to delete this recipe?')) {
+      return;
+    }
+  
+    this.apiService.deleteRecipe(id).subscribe({
+      next: () => {
+        this.router.navigate(['/recipes']);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 }

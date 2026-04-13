@@ -51,4 +51,17 @@ export class ApiService {
           }
         );
     }
+    
+    deleteRecipe(id: string) {
+        const token = localStorage.getItem('accessToken');
+      
+        return this.http.delete(
+          `${this.apiUrl}/recipes/${id}`,
+          {
+            headers: {
+              'X-Authorization': token || ''
+            }
+          }
+        );
+    }
 }
