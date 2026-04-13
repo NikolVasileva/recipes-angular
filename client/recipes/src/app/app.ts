@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './layout/header/header';
 import { Footer } from './layout/footer/footer';
 import { Notification } from './shared/notification/notification';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,5 +13,11 @@ import { Notification } from './shared/notification/notification';
   styleUrl: './app.css'
 })
 export class App {
+  private authService = inject(AuthService); 
+
   protected readonly title = signal('recipes');
+
+  constructor() {
+    this.authService.initSession();
+  }
 }

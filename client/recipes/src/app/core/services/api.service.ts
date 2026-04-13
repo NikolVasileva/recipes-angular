@@ -64,4 +64,18 @@ export class ApiService {
           }
         );
     }
+
+    updateUserFavorites(userId: string, favorites: string[]) {
+        const token = localStorage.getItem('accessToken');
+      
+        return this.http.put(
+          `http://localhost:3030/users/${userId}`,
+          { favorites },
+          {
+            headers: {
+              'X-Authorization': token || ''
+            }
+          }
+        );
+    }
 }

@@ -37,6 +37,15 @@ export class AuthService {
     );
   }
 
+  initSession(): void {
+    const userJson = localStorage.getItem('user');
+  
+    if (userJson) {
+      const user: User = JSON.parse(userJson);
+      this.user.set(user);
+    }
+  }
+
   setSession(user: User): void {
     this.user.set(user);
     localStorage.setItem('accessToken', user.accessToken);
@@ -47,6 +56,11 @@ export class AuthService {
     this.user.set(null);
     localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
+  }
+
+  updateUser(user: User): void {
+    this.user.set(user);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
 }
