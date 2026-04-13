@@ -5,6 +5,7 @@ import { RecipeDetails } from './features/recipe-details/recipe-details';
 import { RecipeCreate } from './features/recipe-create/recipe-create';
 import { Register } from './features/auth/register/register';
 import { Login } from './features/auth/login/login';
+import { RecipeEdit } from './features/recipe-edit/recipe-edit';
 
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: "recipes", component: RecipesList },
     { path: "recipes/:recipeId", component: RecipeDetails},
     { path: "recipe-create", component: RecipeCreate},
+    { path: 'recipes/edit/:recipeId', component: RecipeEdit },
 
     { path: "register", component: Register},
     { path: "login", component: Login},

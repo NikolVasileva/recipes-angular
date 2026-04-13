@@ -40,7 +40,7 @@
 
         <div *ngIf="isOwner(recipe)">
 
-          <a routerLink="['/recipes/edit', recipe._id]" class="btn btn-primary py-3 px-5 rounded-pill me-2">
+          <a [routerLink]="['/recipes/edit', recipe._id]" class="btn btn-primary py-3 px-5 rounded-pill me-2">
             Edit
           </a>
 

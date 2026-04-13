@@ -38,4 +38,17 @@ export class ApiService {
           }
         );
     }
+    updateRecipe(id: string, data: CreateRecipe): Observable<Recipe> {
+        const token = localStorage.getItem('accessToken');
+      
+        return this.http.put<Recipe>(
+          `${this.apiUrl}/recipes/${id}`,
+          data,
+          {
+            headers: {
+              'X-Authorization': token || ''
+            }
+          }
+        );
+    }
 }
