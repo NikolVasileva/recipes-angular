@@ -6,6 +6,7 @@ import { ApiService } from '../../core/services/api.service';
 import { Recipe } from '../../shared/interfaces/recipes';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -20,6 +21,7 @@ export class RecipeDetails {
   private apiService = inject(ApiService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private notif = inject(NotificationService);
   // recipes$!: Observable<Recipe[]>;
 
   recipe$ = this.route.params.pipe(
@@ -38,16 +40,15 @@ export class RecipeDetails {
   }
 
   deleteRecipe(id: string): void {
-    if (!confirm('Are you sure you want to delete this recipe?')) {
-      return;
-    }
+    if (!confirm('Are you sure you want to delete this recipe?')) return;
   
     this.apiService.deleteRecipe(id).subscribe({
       next: () => {
+        this.notif.showSuccess('Recipe deleted successfully!');
         this.router.navigate(['/recipes']);
       },
-      error: (err) => {
-        console.error(err);
+      error: () => {
+        this.notif.showError('Failed to delete recipe!');
       }
     });
   }

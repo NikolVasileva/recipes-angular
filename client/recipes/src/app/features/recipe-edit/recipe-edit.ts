@@ -5,6 +5,7 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { switchMap } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -20,6 +21,7 @@ export class RecipeEdit {
   private router = inject(Router);
   private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
+  private notif = inject(NotificationService);
 
   recipeId = '';
 
@@ -64,7 +66,7 @@ export class RecipeEdit {
 
   onSubmit() {
     if (this.recipeForm.invalid) return;
-
+  
     this.apiService.updateRecipe(this.recipeId, {
       _createdOn: Date.now(),
       title: this.title,
@@ -75,8 +77,14 @@ export class RecipeEdit {
       cookTime: this.cookTime,
       servings: this.servings,
       difficulty: this.difficulty,
-    }).subscribe(() => {
-      this.router.navigate(['/recipes', this.recipeId]);
+    }).subscribe({
+      next: () => {
+        this.notif.showSuccess('Recipe updated successfully!');
+        this.router.navigate(['/recipes', this.recipeId]);
+      },
+      error: () => {
+        this.notif.showError('Update failed!');
+      }
     });
   }
 }
