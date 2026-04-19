@@ -9,6 +9,7 @@ import { RecipeEdit } from './features/recipe-edit/recipe-edit';
 import { Favorites } from './features/favorites/favorites';
 import { authGuard } from './core/guards/auth.guard';
 import { NotFound } from './features/not-found/not-found';
+import { recipeGuard } from './core/guards/recipe.guard';
 
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -16,7 +17,7 @@ export const routes: Routes = [
     { path: "home", component: Home },
 
     { path: "recipes", component: RecipesList },
-    { path: "recipes/:recipeId", component: RecipeDetails},
+    { path: "recipes/:recipeId", component: RecipeDetails, canActivate: [recipeGuard]},
     { path: "recipe-create", component: RecipeCreate, canActivate: [authGuard]},
     { path: 'recipes/edit/:recipeId', component: RecipeEdit, canActivate: [authGuard] },
     { path: 'recipes-favorites', component: Favorites, canActivate: [authGuard] },
@@ -24,5 +25,6 @@ export const routes: Routes = [
     { path: "register", component: Register},
     { path: "login", component: Login},
 
-    { path: "**", component: NotFound}
+    { path: "404", component: NotFound},
+    { path: "**", component: NotFound }
 ];
