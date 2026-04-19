@@ -4,11 +4,12 @@ import { AuthService } from '../../core/services/auth.service';
 import { switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { RecipesItem } from '../../shared/components/recipes-item/recipes-item';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RecipesItem],
   templateUrl: './favorites.html',
 })
 export class Favorites {

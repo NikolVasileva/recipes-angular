@@ -1,43 +1,26 @@
-<div class="container py-5">
-
-    <div class="text-center mb-4">
-        <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-          Favorites
-        </small>
-        <h1 class="display-5 mb-0">My Favorite Recipes</h1>
-    </div>
+<div class="container-fluid service py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s"
+            style="visibility: visible; animation-delay: 0.1s; animation-name: bounceInUp;">
+            <small
+                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Favorites</small>
+            <h1 class="display-5 mb-5">My Favorite recipes</h1>
+        </div>
   
-    <div *ngIf="favorites$ | async as favorites">
-  
+    <ng-container *ngIf="favorites$ | async as favorites">
       <div *ngIf="favorites.length === 0" class="text-center py-5">
-  
         <h3 class="mb-3">You don't have any favorite recipes yet!</h3>
-  
         <p class="mb-4 text-muted">
           Start adding recipes to your favorites to see them here.
         </p>
-  
         <a routerLink="/recipes" class="btn btn-primary px-4 py-2 rounded-pill">
           Recipes
         </a>
-  
       </div>
-  
-      <div *ngIf="favorites.length > 0">
-  
-        <div *ngFor="let recipe of favorites" class="card mb-3 p-3">
-  
-          <h4>{{ recipe.title }}</h4>
-          <p>{{ recipe.description }}</p>
-  
-          <a [routerLink]="['/recipes', recipe._id]" class="btn btn-outline-primary">
-            Read More
-          </a>
-  
+      <div *ngIf="favorites.length > 0" class="row g-4">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex" *ngFor="let recipe of favorites">
+          <app-recipes-item class="w-100 d-flex" [recipe]="recipe"></app-recipes-item>
         </div>
-  
       </div>
-  
-    </div>
-  
+    </ng-container>
   </div>
