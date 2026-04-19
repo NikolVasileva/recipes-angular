@@ -8,7 +8,6 @@
           <h1 class="display-5 mb-0">Create a Recipe</h1>
         </div>
   
-        <!-- <form #recipeForm="ngForm" (ngSubmit)="onSubmit()">
   
           <div class="mb-3">
             <label for="title" class="form-label text-dark">Recipe Title</label>
@@ -122,7 +121,6 @@
         </form> -->
         <form #recipeForm="ngForm" (ngSubmit)="onSubmit()">
 
-            <!-- TITLE -->
             <div class="mb-3">
               <label class="form-label text-dark">Recipe Title</label>
               <input
@@ -133,8 +131,7 @@
                 class="w-100 form-control p-3 border-primary bg-light"
                 placeholder="Recipe Title"
                 required
-                minlength="3"
-              >
+                minlength="3">
           
               @if (
                 (recipeForm.controls['title']?.touched || recipeForm.controls['title']?.dirty)
@@ -144,7 +141,6 @@
               }
             </div>
           
-            <!-- DESCRIPTION -->
             <div class="mb-3">
               <label class="form-label text-dark">Recipe Description</label>
               <textarea
@@ -155,8 +151,7 @@
                 rows="4"
                 placeholder="Recipe Description"
                 required
-                minlength="10"
-              ></textarea>
+                minlength="10"></textarea>
           
               @if (
                 (recipeForm.controls['description']?.touched || recipeForm.controls['description']?.dirty)
@@ -165,8 +160,7 @@
                 <p class="error">Description is required (min 10 characters)!</p>
               }
             </div>
-          
-            <!-- IMAGE URL -->
+        
             <div class="mb-3">
               <label class="form-label text-dark">Image URL</label>
               <input
@@ -177,8 +171,7 @@
                 class="w-100 form-control p-3 border-primary bg-light"
                 placeholder="Image URL"
                 required
-                pattern="https?://.+"
-              >
+                pattern="https?://.+">
           
               @if (
                 (recipeForm.controls['imageUrl']?.touched || recipeForm.controls['imageUrl']?.dirty)
@@ -188,7 +181,6 @@
               }
             </div>
           
-            <!-- INGREDIENTS -->
             <div class="mb-3">
               <label class="form-label text-dark">Ingredients</label>
               <input
@@ -199,8 +191,7 @@
                 class="w-100 form-control p-3 border-primary bg-light"
                 placeholder="Ingredients (comma separated)"
                 required
-                minlength="3"
-              >
+                minlength="3">
           
               @if (
                 (recipeForm.controls['ingredients']?.touched || recipeForm.controls['ingredients']?.dirty)
@@ -209,10 +200,7 @@
                 <p class="error">Ingredients are required!</p>
               }
             </div>
-          
-            <!-- CATEGORY / COOK TIME / SERVINGS -->
             <div class="row g-3 mb-4">
-          
               <div class="col-md-4">
                 <label class="form-label text-dark">Category</label>
                 <input
@@ -222,8 +210,7 @@
                   type="text"
                   class="form-control p-3 border-primary bg-light"
                   placeholder="Category"
-                  required
-                >
+                  required>
           
                 @if (
                   (recipeForm.controls['category']?.touched || recipeForm.controls['category']?.dirty)
@@ -242,8 +229,7 @@
                   type="number"
                   class="form-control p-3 border-primary bg-light"
                   required
-                  min="1"
-                >
+                  min="1">
           
                 @if (
                   (recipeForm.controls['cookTime']?.touched || recipeForm.controls['cookTime']?.dirty)
@@ -262,8 +248,7 @@
                   type="number"
                   class="form-control p-3 border-primary bg-light"
                   required
-                  min="1"
-                >
+                  min="1">
           
                 @if (
                   (recipeForm.controls['servings']?.touched || recipeForm.controls['servings']?.dirty)
@@ -275,7 +260,6 @@
           
             </div>
           
-            <!-- DIFFICULTY -->
             <div class="mb-3">
               <label class="form-label text-dark">Difficulty</label>
               <input
@@ -296,13 +280,10 @@
                 <p class="error">Difficulty must be: easy, medium or hard!</p>
               }
             </div>
-          
-            <!-- BUTTON -->
             <button
               type="submit"
               class="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
-              [disabled]="recipeForm.invalid"
-            >
+              [disabled]="recipeForm.invalid">
               Add Recipe
             </button>
           
