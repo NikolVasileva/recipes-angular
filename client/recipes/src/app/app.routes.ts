@@ -8,6 +8,7 @@ import { Login } from './features/auth/login/login';
 import { RecipeEdit } from './features/recipe-edit/recipe-edit';
 import { Favorites } from './features/favorites/favorites';
 import { authGuard } from './core/guards/auth.guard';
+import { NotFound } from './features/not-found/not-found';
 
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -22,4 +23,6 @@ export const routes: Routes = [
 
     { path: "register", component: Register},
     { path: "login", component: Login},
+
+    { path: "**", component: NotFound}
 ];
