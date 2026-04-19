@@ -29,8 +29,10 @@ export class RecipeCreate {
   private apiService = inject(ApiService);
   private notifService = inject(NotificationService);
 
-  onSubmit(): void {
-    if (this.recipeForm.invalid) {
+  onSubmit(form: NgForm): void {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      this.notifService.showError('Please fill all required fields correctly!');
       return;
     }
 

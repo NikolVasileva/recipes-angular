@@ -1,73 +1,180 @@
 <div class="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
     <div class="container">
-        <div class="p-5 bg-light rounded contact-form mx-auto">
-            <div class="text-center mb-4">
-                <small
-                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-                    Add New Recipe
-                </small>
-                <h1 class="display-5 mb-0">Edit Recipe</h1>
-            </div>
-
-            <form #recipeForm="ngForm" (ngSubmit)="onSubmit()">
-
-                <div class="mb-3">
-                    <label for="title" class="form-label text-dark">Recipe Title</label>
-                    <input appInputError [(ngModel)]="title" name="title" id="title" type="text"
-                        class="w-100 form-control p-3 border-primary bg-light" placeholder="Recipe Title" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label text-dark">Recipe Description</label>
-                    <textarea appInputError [(ngModel)]="description" name="description" id="description"
-                        class="w-100 form-control p-3 border-primary bg-light" rows="4" placeholder="Recipe Description"
-                        required></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="imageUrl" class="form-label text-dark">Image URL</label>
-                    <input appInputError [(ngModel)]="imageUrl" name="imageUrl" id="imageUrl" type="text"
-                        class="w-100 form-control p-3 border-primary bg-light" placeholder="Image URL">
-                </div>
-
-                <div class="mb-3">
-                    <label for="ingredients" class="form-label text-dark">Ingredients</label>
-                    <input appInputError [(ngModel)]="ingredients" name="ingredients" id="ingredients" type="text"
-                        class="w-100 form-control p-3 border-primary bg-light"
-                        placeholder="Ingredients (comma separated)">
-                </div>
-
-                <div class="row g-3 mb-4">
-                    <div class="col-md-4">
-                        <label class="form-label text-dark">Category</label>
-                        <input appInputError [(ngModel)]="category" name="category" type="text"
-                            class="w-100 form-control p-3 border-primary bg-light" placeholder="Category">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label text-dark">Cook Time (min)</label>
-                        <input appInputError [(ngModel)]="cookTime" name="cookTime" type="number"
-                            class="w-100 form-control p-3 border-primary bg-light">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label text-dark">Servings</label>
-                        <input appInputError [(ngModel)]="servings" name="servings" type="number"
-                            class="w-100 form-control p-3 border-primary bg-light">
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label text-dark">Difficulty</label>
-                    <input appInputError [(ngModel)]="difficulty" name="difficulty" type="text"
-                        class="w-100 form-control p-3 border-primary bg-light" placeholder="easy, medium, hard">
-                </div>
-
-                <button type="submit" class="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill">
-                    Save Changes
-                </button>
-
-            </form>
+      <div class="p-5 bg-light rounded contact-form mx-auto">
+  
+        <div class="text-center mb-4">
+          <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+            Edit Recipe
+          </small>
+          <h1 class="display-5 mb-0">Edit Recipe</h1>
         </div>
+  
+        <form #recipeForm="ngForm" (ngSubmit)="onSubmit(recipeForm)">
+          <div class="mb-3">
+            <label class="form-label text-dark">Recipe Title</label>
+            <input
+              appInputError
+              [(ngModel)]="title"
+              name="title"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="Recipe Title"
+              required
+              minlength="3">
+  
+            @if (
+              (recipeForm.controls['title']?.touched || recipeForm.controls['title']?.dirty)
+              && recipeForm.controls['title']?.invalid
+            ) {
+              <p class="text-danger mt-1">Title is required (min 3 characters)!</p>
+            }
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label text-dark">Recipe Description</label>
+            <textarea
+              appInputError
+              [(ngModel)]="description"
+              name="description"
+              class="w-100 form-control p-3 border-primary bg-light"
+              rows="4"
+              placeholder="Recipe Description"
+              required
+              minlength="10"></textarea>
+  
+            @if (
+              (recipeForm.controls['description']?.touched || recipeForm.controls['description']?.dirty)
+              && recipeForm.controls['description']?.invalid
+            ) {
+              <p class="text-danger mt-1">Description is required (min 10 characters)!</p>
+            }
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label text-dark">Image URL</label>
+            <input
+              appInputError
+              [(ngModel)]="imageUrl"
+              name="imageUrl"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="Image URL"
+              required
+              pattern="https?://.+">
+  
+            @if (
+              (recipeForm.controls['imageUrl']?.touched || recipeForm.controls['imageUrl']?.dirty)
+              && recipeForm.controls['imageUrl']?.invalid
+            ) {
+              <p class="text-danger mt-1">Valid image URL is required!</p>
+            }
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label text-dark">Ingredients</label>
+            <input
+              appInputError
+              [(ngModel)]="ingredients"
+              name="ingredients"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="Ingredients (comma separated)"
+              required>
+  
+            @if (
+              (recipeForm.controls['ingredients']?.touched || recipeForm.controls['ingredients']?.dirty)
+              && recipeForm.controls['ingredients']?.invalid
+            ) {
+              <p class="text-danger mt-1">Ingredients are required!</p>
+            }
+          </div>
+  
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label class="form-label text-dark">Category</label>
+              <input
+                appInputError
+                [(ngModel)]="category"
+                name="category"
+                type="text"
+                class="form-control p-3 border-primary bg-light"
+                placeholder="Category"
+                required>
+  
+              @if (
+                (recipeForm.controls['category']?.touched || recipeForm.controls['category']?.dirty)
+                && recipeForm.controls['category']?.invalid
+              ) {
+                <p class="text-danger mt-1">Category is required!</p>
+              }
+            </div>
+  
+            <div class="col-md-4">
+              <label class="form-label text-dark">Cook Time (min)</label>
+              <input
+                appInputError
+                [(ngModel)]="cookTime"
+                name="cookTime"
+                type="number"
+                class="form-control p-3 border-primary bg-light"
+                required
+                min="1">
+  
+              @if (
+                (recipeForm.controls['cookTime']?.touched || recipeForm.controls['cookTime']?.dirty)
+                && recipeForm.controls['cookTime']?.invalid
+              ) {
+                <p class="text-danger mt-1">Cook time must be at least 1 minute!</p>
+              }
+            </div>
+  
+            <div class="col-md-4">
+              <label class="form-label text-dark">Servings</label>
+              <input
+                appInputError
+                [(ngModel)]="servings"
+                name="servings"
+                type="number"
+                class="form-control p-3 border-primary bg-light"
+                required
+                min="1">
+  
+              @if (
+                (recipeForm.controls['servings']?.touched || recipeForm.controls['servings']?.dirty)
+                && recipeForm.controls['servings']?.invalid
+              ) {
+                <p class="text-danger mt-1">Servings must be at least 1!</p>
+              }
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label text-dark">Difficulty</label>
+            <input
+              appInputError
+              [(ngModel)]="difficulty"
+              name="difficulty"
+              type="text"
+              class="w-100 form-control p-3 border-primary bg-light"
+              placeholder="easy, medium, hard"
+              required
+              pattern="^(easy|medium|hard)$">
+  
+            @if (
+              (recipeForm.controls['difficulty']?.touched || recipeForm.controls['difficulty']?.dirty)
+              && recipeForm.controls['difficulty']?.invalid
+            ) {
+              <p class="text-danger mt-1">Difficulty must be: easy, medium or hard!</p>
+            }
+          </div>
+
+          <button
+            type="submit"
+            class="w-100 btn btn-primary p-3 rounded-pill"
+            [disabled]="recipeForm.invalid">
+            Save Changes
+          </button>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
