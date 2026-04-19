@@ -7,119 +7,7 @@
           </small>
           <h1 class="display-5 mb-0">Create a Recipe</h1>
         </div>
-  
-  
-          <div class="mb-3">
-            <label for="title" class="form-label text-dark">Recipe Title</label>
-            <input
-              appInputError
-              [(ngModel)]="title"
-              name="title"
-              id="title"
-              type="text"
-              class="w-100 form-control p-3 border-primary bg-light"
-              placeholder="Recipe Title"
-              required
-            >
-          </div>
-  
-          <div class="mb-3">
-            <label for="description" class="form-label text-dark">Recipe Description</label>
-            <textarea
-              appInputError
-              [(ngModel)]="description"
-              name="description"
-              id="description"
-              class="w-100 form-control p-3 border-primary bg-light"
-              rows="4"
-              placeholder="Recipe Description"
-              required
-            ></textarea>
-          </div>
-  
-          <div class="mb-3">
-            <label for="imageUrl" class="form-label text-dark">Image URL</label>
-            <input
-              appInputError
-              [(ngModel)]="imageUrl"
-              name="imageUrl"
-              id="imageUrl"
-              type="text"
-              class="w-100 form-control p-3 border-primary bg-light"
-              placeholder="Image URL"
-            >
-          </div>
-  
-          <div class="mb-3">
-            <label for="ingredients" class="form-label text-dark">Ingredients</label>
-            <input
-              appInputError
-              [(ngModel)]="ingredients"
-              name="ingredients"
-              id="ingredients"
-              type="text"
-              class="w-100 form-control p-3 border-primary bg-light"
-              placeholder="Ingredients (comma separated)"
-            >
-          </div>
-  
-          <div class="row g-3 mb-4">
-            <div class="col-md-4">
-              <label class="form-label text-dark">Category</label>
-              <input
-                appInputError
-                [(ngModel)]="category"
-                name="category"
-                type="text"
-                class="w-100 form-control p-3 border-primary bg-light"
-                placeholder="Category"
-              >
-            </div>
-  
-            <div class="col-md-4">
-              <label class="form-label text-dark">Cook Time (min)</label>
-              <input
-                appInputError
-                [(ngModel)]="cookTime"
-                name="cookTime"
-                type="number"
-                class="w-100 form-control p-3 border-primary bg-light"
-              >
-            </div>
-  
-            <div class="col-md-4">
-              <label class="form-label text-dark">Servings</label>
-              <input
-                appInputError
-                [(ngModel)]="servings"
-                name="servings"
-                type="number"
-                class="w-100 form-control p-3 border-primary bg-light"
-              >
-            </div>
-          </div>
-  
-          <div class="mb-3">
-            <label class="form-label text-dark">Difficulty</label>
-            <input
-              appInputError
-              [(ngModel)]="difficulty"
-              name="difficulty"
-              type="text"
-              class="w-100 form-control p-3 border-primary bg-light"
-              placeholder="easy, medium, hard"
-            >
-          </div>
-  
-          <button
-            type="submit"
-            class="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
-          >
-            Add Recipe
-          </button>
-  
-        </form> -->
-        <form #recipeForm="ngForm" (ngSubmit)="onSubmit()">
+        <form #recipeFormCreate="ngForm" (ngSubmit)="onSubmit(recipeFormCreate)">
 
             <div class="mb-3">
               <label class="form-label text-dark">Recipe Title</label>
@@ -129,15 +17,15 @@
                 name="title"
                 type="text"
                 class="w-100 form-control p-3 border-primary bg-light"
-                placeholder="Recipe Title"
                 required
-                minlength="3">
+                minlength="3"
+              >
           
               @if (
-                (recipeForm.controls['title']?.touched || recipeForm.controls['title']?.dirty)
-                && recipeForm.controls['title']?.invalid
+                (recipeFormCreate.controls['title']?.touched || recipeFormCreate.controls['title']?.dirty)
+                && recipeFormCreate.controls['title']?.invalid
               ) {
-                <p class="error">Title is required (min 3 characters)!</p>
+                <p class="text-danger">Title is required (min 3 characters)!</p>
               }
             </div>
           
@@ -149,18 +37,18 @@
                 name="description"
                 class="w-100 form-control p-3 border-primary bg-light"
                 rows="4"
-                placeholder="Recipe Description"
                 required
-                minlength="10"></textarea>
+                minlength="10"
+              ></textarea>
           
               @if (
-                (recipeForm.controls['description']?.touched || recipeForm.controls['description']?.dirty)
-                && recipeForm.controls['description']?.invalid
+                (recipeFormCreate.controls['description']?.touched || recipeFormCreate.controls['description']?.dirty)
+                && recipeFormCreate.controls['description']?.invalid
               ) {
-                <p class="error">Description is required (min 10 characters)!</p>
+                <p class="text-danger">Description is required (min 10 characters)!</p>
               }
             </div>
-        
+          
             <div class="mb-3">
               <label class="form-label text-dark">Image URL</label>
               <input
@@ -169,15 +57,15 @@
                 name="imageUrl"
                 type="text"
                 class="w-100 form-control p-3 border-primary bg-light"
-                placeholder="Image URL"
                 required
-                pattern="https?://.+">
+                pattern="https?://.+"
+              >
           
               @if (
-                (recipeForm.controls['imageUrl']?.touched || recipeForm.controls['imageUrl']?.dirty)
-                && recipeForm.controls['imageUrl']?.invalid
+                (recipeFormCreate.controls['imageUrl']?.touched || recipeFormCreate.controls['imageUrl']?.dirty)
+                && recipeFormCreate.controls['imageUrl']?.invalid
               ) {
-                <p class="error">Valid image URL is required!</p>
+                <p class="text-danger">Valid image URL is required!</p>
               }
             </div>
           
@@ -189,18 +77,19 @@
                 name="ingredients"
                 type="text"
                 class="w-100 form-control p-3 border-primary bg-light"
-                placeholder="Ingredients (comma separated)"
                 required
-                minlength="3">
+              >
           
               @if (
-                (recipeForm.controls['ingredients']?.touched || recipeForm.controls['ingredients']?.dirty)
-                && recipeForm.controls['ingredients']?.invalid
+                (recipeFormCreate.controls['ingredients']?.touched || recipeFormCreate.controls['ingredients']?.dirty)
+                && recipeFormCreate.controls['ingredients']?.invalid
               ) {
-                <p class="error">Ingredients are required!</p>
+                <p class="text-danger">Ingredients are required!</p>
               }
             </div>
+          
             <div class="row g-3 mb-4">
+          
               <div class="col-md-4">
                 <label class="form-label text-dark">Category</label>
                 <input
@@ -209,19 +98,19 @@
                   name="category"
                   type="text"
                   class="form-control p-3 border-primary bg-light"
-                  placeholder="Category"
-                  required>
+                  required
+                >
           
                 @if (
-                  (recipeForm.controls['category']?.touched || recipeForm.controls['category']?.dirty)
-                  && recipeForm.controls['category']?.invalid
+                  (recipeFormCreate.controls['category']?.touched || recipeFormCreate.controls['category']?.dirty)
+                  && recipeFormCreate.controls['category']?.invalid
                 ) {
-                  <p class="error">Category is required!</p>
+                  <p class="text-danger">Category is required!</p>
                 }
               </div>
           
               <div class="col-md-4">
-                <label class="form-label text-dark">Cook Time (min)</label>
+                <label class="form-label text-dark">Cook Time</label>
                 <input
                   appInputError
                   [(ngModel)]="cookTime"
@@ -229,13 +118,14 @@
                   type="number"
                   class="form-control p-3 border-primary bg-light"
                   required
-                  min="1">
+                  min="1"
+                >
           
                 @if (
-                  (recipeForm.controls['cookTime']?.touched || recipeForm.controls['cookTime']?.dirty)
-                  && recipeForm.controls['cookTime']?.invalid
+                  (recipeFormCreate.controls['cookTime']?.touched || recipeFormCreate.controls['cookTime']?.dirty)
+                  && recipeFormCreate.controls['cookTime']?.invalid
                 ) {
-                  <p class="error">Cook time must be at least 1 minute!</p>
+                  <p class="text-danger">Cook time must be at least 1 minute!</p>
                 }
               </div>
           
@@ -248,13 +138,14 @@
                   type="number"
                   class="form-control p-3 border-primary bg-light"
                   required
-                  min="1">
+                  min="1"
+                >
           
                 @if (
-                  (recipeForm.controls['servings']?.touched || recipeForm.controls['servings']?.dirty)
-                  && recipeForm.controls['servings']?.invalid
+                  (recipeFormCreate.controls['servings']?.touched || recipeFormCreate.controls['servings']?.dirty)
+                  && recipeFormCreate.controls['servings']?.invalid
                 ) {
-                  <p class="error">Servings must be at least 1!</p>
+                  <p class="text-danger">Servings must be at least 1!</p>
                 }
               </div>
           
@@ -268,27 +159,27 @@
                 name="difficulty"
                 type="text"
                 class="w-100 form-control p-3 border-primary bg-light"
-                placeholder="easy, medium, hard"
                 required
                 pattern="^(easy|medium|hard)$"
               >
           
               @if (
-                (recipeForm.controls['difficulty']?.touched || recipeForm.controls['difficulty']?.dirty)
-                && recipeForm.controls['difficulty']?.invalid
+                (recipeFormCreate.controls['difficulty']?.touched || recipeFormCreate.controls['difficulty']?.dirty)
+                && recipeFormCreate.controls['difficulty']?.invalid
               ) {
-                <p class="error">Difficulty must be: easy, medium or hard!</p>
+                <p class="text-danger">Difficulty must be: easy, medium or hard!</p>
               }
             </div>
+          
             <button
               type="submit"
-              class="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
-              [disabled]="recipeForm.invalid">
+              class="w-100 btn btn-primary p-3 rounded-pill"
+              [disabled]="recipeFormCreate.invalid"
+            >
               Add Recipe
             </button>
           
-          </form>
-    
+        </form>
     </div>
     </div>
   </div>

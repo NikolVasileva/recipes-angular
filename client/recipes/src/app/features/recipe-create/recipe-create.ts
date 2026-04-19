@@ -14,7 +14,7 @@ import { NotificationService } from '../../core/services/notification.service';
   styleUrl: './recipe-create.css',
 })
 export class RecipeCreate {
-  @ViewChild("recipeForm") recipeForm!: NgForm;
+  // @ViewChild("recipeFormCreate") recipeForm!: NgForm;
 
   title = "";
   description = "";

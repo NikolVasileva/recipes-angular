@@ -64,7 +64,7 @@ export class RecipeEdit {
   }
  
 
-  onSubmit() {
+  onSubmit(form: NgForm): void {
     if (this.recipeForm.invalid) return;
   
     this.apiService.updateRecipe(this.recipeId, {
