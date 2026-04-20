@@ -42,7 +42,10 @@ export class AuthService {
   
     if (userJson) {
       const user: User = JSON.parse(userJson);
-      this.user.set(user);
+      this.loadUser(user._id).subscribe(fullUser => {
+        this.user.set(fullUser);
+        localStorage.setItem('user', JSON.stringify(fullUser));
+      });
     }
   }
 
@@ -63,4 +66,9 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
+  loadUser(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${userId}`);
+  }
+
 }
+
